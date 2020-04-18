@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     // Callback whenever we enter a "trigger", which is a collder on an object with "isTrigger" checked.
     private void OnCollisionEnter2D(Collision2D collision) {
-        ConsumableObject consumable = collision.otherCollider.GetComponent<ConsumableObject>();
+        ConsumableObject consumable = collision.collider.GetComponent<ConsumableObject>();
             if (consumable) {
                 consumable.BeConsumedBy(this);
             }
