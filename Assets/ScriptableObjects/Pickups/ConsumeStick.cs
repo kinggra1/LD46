@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ConsumeStick.asset", menuName = "Consumables/Stick")]
 public class ConsumeStick : ConsumeAction {
 
-    public override void Apply(PlayerController player) {
+    public override void ApplyTo(PlayerController player) {
         player.AddFuel(fuel);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ConsumeIceCube.asset", menuName = "Consumables/IceCube")]
 public class ConsumeIceCube : ConsumeAction {
 
-    public override void Apply(PlayerController player) {
+    public override void ApplyTo(PlayerController player) {
         player.AddFuel(fuel);
     }
 }

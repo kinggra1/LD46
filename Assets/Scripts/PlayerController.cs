@@ -26,13 +26,23 @@ public class PlayerController : MonoBehaviour
         xInput = Input.GetAxis("Horizontal");
         yInput = Input.GetAxis("Vertical");
 
-        fuel -= fuelLossRate * Time.deltaTime;
     }
 
     // Physics timestep. Put motion code here for smoother motions and collisions.
     private void FixedUpdate() {
+        UpdateFuel();
+
         transform.position += new Vector3(xInput, yInput) * MOVEMENT_SPEED * Time.fixedDeltaTime;
         transform.localScale = new Vector3(fuel, fuel);
+    }
+
+    private void UpdateFuel() {
+        fuel -= fuelLossRate * Time.deltaTime;
+
+        // Arbitrarily cap at 0.5f for now. This will be "death" later.
+        if (fuel < 0.5f) {
+            fuel = 0.5f;
+        }
     }
 
     public void AddFuel(float deltaFuel) {
@@ -48,7 +58,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) {
         ConsumableObject consumable = collision.collider.GetComponent<ConsumableObject>();
             if (consumable) {
-                consumable.BeConsumedBy(this);
+                consumable.TryBeConsumedBy(this);
             }
         
     }

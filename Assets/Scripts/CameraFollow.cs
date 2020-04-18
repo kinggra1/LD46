@@ -17,12 +17,12 @@ public class CameraFollow : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        camera.orthographicSize = GetZoomDist();
+        camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, TargetZoomDist(), 0.01f);
         Vector3 cameraOffset = new Vector3(0f, 0f, zOffset);
         this.transform.position = player.transform.position + cameraOffset;
     }
 
-    private float GetZoomDist() {
+    private float TargetZoomDist() {
         return Mathf.Clamp(player.GetFuel(), 1, 20) / 2;
     }
 }

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ConsumeLog
   m_EditorClassIdentifier: 
   fuel: 2
+  minPlayerSize: 2

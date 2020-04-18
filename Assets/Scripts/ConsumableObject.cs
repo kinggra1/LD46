@@ -6,8 +6,10 @@ public class ConsumableObject : MonoBehaviour {
     [SerializeField]
     private ConsumeAction action;
 
-    public void BeConsumedBy(PlayerController player) {
-        action.Apply(player);
-        Destroy(this.gameObject);
+    public void TryBeConsumedBy(PlayerController player) {
+        if (action.CanBeAppliedTo(player)) {
+            action.ApplyTo(player);
+            Destroy(this.gameObject);
+        }
     }
 }
