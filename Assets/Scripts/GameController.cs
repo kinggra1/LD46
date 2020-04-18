@@ -30,9 +30,15 @@ public class GameController : MonoBehaviour
     {
         Vector3Int cellPosition = grid.WorldToCell(player.gameObject.transform.position);
         TileBase tile = tilemap.GetTile(cellPosition);
-        if (tile.name == "grass")
-        {
-            Debug.Log("grass");
-        }
+
+        //if (tile is GrassTile)
+        //{
+        //    GrassTile grassTile = (GrassTile)tile;
+        //    Debug.Log(grassTile.IsBurnt());
+        //    if (!grassTile.IsBurnt())
+        //    {
+        //        grassTile.Burn();
+        //    }
+        //}
     }
 }

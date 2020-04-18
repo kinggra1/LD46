@@ -9,7 +9,12 @@ public class GrassTile : Tile
     public Sprite Grass;
     public Sprite BurntGrass;
 
-    private bool burnt = false;
+    private bool burnt;
+
+    public GrassTile()
+    {
+        burnt = false;
+    }
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
