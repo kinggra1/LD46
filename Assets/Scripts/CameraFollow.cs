@@ -13,6 +13,8 @@ public class CameraFollow : MonoBehaviour {
     void Start() {
         player = GameObject.FindObjectOfType<PlayerController>();
         camera = GetComponent<Camera>();
+
+        Reset();
     }
 
     // Update is called once per frame
@@ -23,6 +25,12 @@ public class CameraFollow : MonoBehaviour {
     }
 
     private float TargetZoomDist() {
-        return Mathf.Clamp(player.GetFuel(), 1, 20) / 2;
+        return player.GetFuelRatio() * 10f + 10f;
+        return Mathf.Clamp(player.GetFuelRatio(), 1, 20);
+    }
+
+    private void Reset() {
+        camera.orthographicSize = TargetZoomDist();
+        camera.transform.position = player.transform.position + new Vector3(0f, 0f, zOffset);
     }
 }
