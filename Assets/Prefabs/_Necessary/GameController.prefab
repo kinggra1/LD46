@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6999187351339559512}
   - component: {fileID: 6331079233181914129}
+  - component: {fileID: -6375173873835997608}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -43,3 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d85b16cb13699742a10c6e81404983f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6375173873835997608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999187351339559527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eafda9b03b7198a4c8b359a90f7cd57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portalFadeImage: {fileID: 0}

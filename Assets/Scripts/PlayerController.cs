@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     private readonly float MOVEMENT_SPEED = 2f;
     private readonly float DEFAULT_FUEL_LOSS_RATE = 0.5f;
+    private readonly float MAX_FUEL = 100f;
 
     // This is UR LIFE FORCE.
     private float fuel = 5f;
@@ -54,12 +56,22 @@ public class PlayerController : MonoBehaviour
         return fuel;
     }
 
+    public float GetFuelRatio() {
+        return fuel / MAX_FUEL;
+    }
+
     // Callback whenever we enter a "trigger", which is a collder on an object with "isTrigger" checked.
     private void OnCollisionEnter2D(Collision2D collision) {
         ConsumableObject consumable = collision.collider.GetComponent<ConsumableObject>();
-            if (consumable) {
-                consumable.TryBeConsumedBy(this);
-            }
-        
+        if (consumable) {
+            consumable.TryBeConsumedBy(this);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider) {
+        ExitPortal portal = collider.GetComponent<ExitPortal>();
+        if (portal) {
+            GameController.instance.PortalToScene(portal.sceneToLoad.name);
+        }
     }
 }

@@ -1,0 +1,54 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class SceneTransitions : MonoBehaviour {
+    public enum TransitionType { PORTAL };
+    private TransitionType currentTransitionType = TransitionType.PORTAL;
+
+    private readonly float PORTAL_FADEOUT_TIME = 1.5f;
+
+    public Image portalFadeImage;
+
+    private CanvasElementsNeeded uiData;
+
+    private void Start() {
+
+        FindNeededObjects();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void FindNeededObjects() {
+        uiData = GameObject.FindObjectOfType<CanvasElementsNeeded>();
+        portalFadeImage = uiData.portalFadeImage;
+    }
+
+    public void PortalToScene(string sceneName) {
+        currentTransitionType = TransitionType.PORTAL;
+        GameController.instance.PauseGame();
+        // Hard set overlap to be transparent before tweening.
+        Color current = portalFadeImage.color;
+        portalFadeImage.color = new Color(current.r, current.g, current.b, 0f);
+        LeanTween.alpha(portalFadeImage.rectTransform, 1f, 1f).setEase(LeanTweenType.linear).setOnComplete(() => GameController.instance.LoadScene(sceneName));
+    }
+
+    public void PortalUncover() {
+        // Hard set overlap to be opaque before tweening.
+        Color current = portalFadeImage.color;
+        portalFadeImage.color = new Color(current.r, current.g, current.b, 1f);
+        LeanTween.alpha(portalFadeImage.rectTransform, 0f, 1f).setEase(LeanTweenType.linear).setOnComplete(GameController.instance.ResumeGame);
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
+        FindNeededObjects();
+
+        switch (currentTransitionType) {
+            case TransitionType.PORTAL:
+                PortalUncover();
+                break; 
+        }
+    }
+}
