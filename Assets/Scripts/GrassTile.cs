@@ -9,8 +9,6 @@ public class GrassTile : Tile
     public Sprite Grass;
     public Sprite BurntGrass;
 
-    private bool burnt;
-
     public GrassTile()
     {
         burnt = false;
