@@ -10,7 +10,7 @@ public class SceneTransitions : MonoBehaviour {
 
     private readonly float PORTAL_FADEOUT_TIME = 1.5f;
 
-    public Image portalFadeImage;
+    private Image portalFadeImage;
 
     private CanvasElementsNeeded uiData;
 
