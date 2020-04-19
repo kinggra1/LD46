@@ -15,8 +15,8 @@ public class GameController : MonoBehaviour
     private CanvasElementsNeeded uiData;
     private SceneTransitions sceneTransitions;
 
-    private float grassFuelValue = 1f;
-    private float waterDamageRate = -2f;
+    private float grassFuelValue = 0.1f;
+    private float waterDamageRate = -10f;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +52,10 @@ public class GameController : MonoBehaviour
 
     private void CheckTileUnderPlayer()
     {
+        if (!tilemap) {
+            return;
+        }
+
         Vector3Int cellPosition = grid.WorldToCell(player.gameObject.transform.position);
         Tile tile = tilemap.GetTile<Tile>(cellPosition);
         if (tile && tile.sprite)
