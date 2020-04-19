@@ -25,7 +25,7 @@ public class CameraFollow : MonoBehaviour {
     }
 
     private float TargetZoomDist() {
-        return player.GetFuelRatio() * 10f + 10f;
+        return player.GetFuelRatio() * 10f + 5f;
         return Mathf.Clamp(player.GetFuelRatio(), 1, 20);
     }
 
