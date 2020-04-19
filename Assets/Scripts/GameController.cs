@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
 {
     public static GameController instance;
 
+    public enum TileType { NONE, GRASS, BURNT_GRASS, WATER }
+
     private PlayerController player;
     private Grid grid;
     private Tilemap tilemap;
@@ -58,16 +60,18 @@ public class GameController : MonoBehaviour
 
         Vector3Int cellPosition = grid.WorldToCell(player.gameObject.transform.position);
         Tile tile = tilemap.GetTile<Tile>(cellPosition);
-        if (tile && tile.sprite)
-        {
-            if (tile.sprite.name == "Grass")
-            {
+
+        switch (GetTileType(tile)) {
+            case TileType.NONE:
+                break;
+            case TileType.GRASS:
                 BurnGrass(cellPosition);
-            }
-            if (tile.sprite.name == "Water")
-            {
+                break;
+            case TileType.BURNT_GRASS:
+                break;
+            case TileType.WATER:
                 player.AddFuel(waterDamageRate * Time.deltaTime);
-            }
+                break;
         }
     }
 
@@ -79,6 +83,33 @@ public class GameController : MonoBehaviour
 
         // give fuel to player
         player.AddFuel(grassFuelValue);
+    }
+
+    public bool IsWaterHere(Vector3 worldPos) {
+        return GetTileTypeAtPos(worldPos) == TileType.WATER;
+    }
+
+    public TileType GetTileTypeAtPos(Vector3 pos) {
+        return GetTileType(TileAtPosition(pos));
+    }
+
+    private Tile TileAtPosition(Vector3 worldPos) {
+        return tilemap.GetTile<Tile>(grid.WorldToCell(worldPos));
+    }
+
+    private TileType GetTileType(Tile tile) {
+        if (tile && tile.sprite) {
+            if (tile.sprite.name == "Grass") {
+                return TileType.GRASS;
+            }
+            if (tile.sprite.name == "BurntGrass") {
+                return TileType.BURNT_GRASS;
+            }
+            if (tile.sprite.name == "Water") {
+                return TileType.WATER;
+            }
+        }
+        return TileType.NONE;
     }
 
     public void PortalToScene(string sceneName) {
