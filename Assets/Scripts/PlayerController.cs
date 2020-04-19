@@ -9,14 +9,25 @@ public class PlayerController : MonoBehaviour
     private readonly float DEFAULT_FUEL_LOSS_RATE = 0.5f;
     private readonly float MAX_FUEL = 100f;
 
+    private readonly float MIN_SMALL_SIZE = 5f;
+
     // This is UR LIFE FORCE.
     private float fuel = 5f;
     // fuel lost per second
     private float fuelLossRate = 0.5f;
 
-
     private float xInput;
     private float yInput;
+
+    private enum size
+    {
+        mini,
+        small
+    }
+    private size currentSpriteSize = size.mini;
+
+    public RuntimeAnimatorController miniAnimation;
+    public RuntimeAnimatorController smallAnimation;
 
     // Start is called before the first frame update
     void Start() {
@@ -28,6 +39,7 @@ public class PlayerController : MonoBehaviour
         xInput = Input.GetAxis("Horizontal");
         yInput = Input.GetAxis("Vertical");
 
+        CheckSize();
     }
 
     // Physics timestep. Put motion code here for smoother motions and collisions.
@@ -38,6 +50,26 @@ public class PlayerController : MonoBehaviour
 
         float playerScale = CalculateScale();
         transform.localScale = new Vector3(playerScale, playerScale);
+    }
+
+    private void CheckSize()
+    {
+        if (fuel < MIN_SMALL_SIZE && currentSpriteSize != size.mini)
+        {
+            currentSpriteSize = size.mini;
+            SetAnimation(miniAnimation);
+        }
+        else if (fuel > MIN_SMALL_SIZE && currentSpriteSize != size.small)
+        {
+            currentSpriteSize = size.small;
+            SetAnimation(smallAnimation);
+        }
+    }
+
+    private void SetAnimation(RuntimeAnimatorController animation)
+    {
+        Animator animator = GetComponent<Animator>();
+        animator.runtimeAnimatorController = animation;
     }
 
     private float CalculateScale() {
