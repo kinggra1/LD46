@@ -83,5 +83,11 @@ public class PlayerController : MonoBehaviour
         if (portal) {
             GameController.instance.PortalToScene(portal.sceneToLoad);
         }
+
+        BurnableObject burnable = collider.GetComponent<BurnableObject>();
+        if (burnable)
+        {
+            burnable.TryBeBurnedBy(this);
+        }
     }
 }
