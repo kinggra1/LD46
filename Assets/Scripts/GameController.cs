@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     private CanvasElementsNeeded uiData;
     private SceneTransitions sceneTransitions;
 
+    private float grassFuelValue = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,13 +59,21 @@ public class GameController : MonoBehaviour
         Tile tile = tilemap.GetTile<Tile>(cellPosition);
         if (tile && tile.sprite)
         {
-            Debug.Log(tile.sprite.name);
             if (tile.sprite.name == "Grass")
             {
-                Tile burntGrassTile = (Tile) Resources.Load("Tiles/BurntGrass", typeof(Tile));
-                tilemap.SetTile(cellPosition, burntGrassTile);
+                BurnGrass(cellPosition);
             }
         }
+    }
+
+    private void BurnGrass(Vector3Int cellPosition)
+    {
+        // change sprite
+        Tile burntGrassTile = (Tile)Resources.Load("Tiles/BurntGrass", typeof(Tile));
+        tilemap.SetTile(cellPosition, burntGrassTile);
+
+        // give fuel to player
+        player.AddFuel(grassFuelValue);
     }
 
     public void PortalToScene(string sceneName) {
