@@ -70,3 +70,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   consumeSound: {fileID: 8300000, guid: d5bbc51cb084a0a4d95b972aaf5f41fe, type: 3}
+  menuMusic: {fileID: 0}
+  gameplayMusic: {fileID: 8300000, guid: ae2deb88b77b6cd40822d1669288c3cc, type: 3}
+  backgroundFire: {fileID: 8300000, guid: eb24199b8eaf6ac4eb5d92daf45b94ba, type: 3}

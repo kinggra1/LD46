@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ConsumeIceCube
   m_EditorClassIdentifier: 
   fuel: -1
+  minPlayerSize: 0

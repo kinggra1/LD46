@@ -8,7 +8,14 @@ public class AudioController : MonoBehaviour
 
     public AudioClip consumeSound;
 
+    public AudioClip menuMusic;
+    public AudioClip gameplayMusic;
+
+    public AudioClip backgroundFire;
+
     private AudioSource consumeAudioSource;
+    private AudioSource musicAudioSource;
+    private AudioSource backgroundAudioSource;
 
     private void Awake() {
         if (instance) {
@@ -18,6 +25,15 @@ public class AudioController : MonoBehaviour
         instance = this;
 
         consumeAudioSource = gameObject.AddComponent<AudioSource>();
+        musicAudioSource = gameObject.AddComponent<AudioSource>();
+        backgroundAudioSource = gameObject.AddComponent<AudioSource>();
+
+        musicAudioSource.clip = gameplayMusic;
+        musicAudioSource.volume = 0.1f;
+        musicAudioSource.Play();
+
+        backgroundAudioSource.clip = backgroundFire;
+        backgroundAudioSource.Play();
     }
 
     // Start is called before the first frame update
@@ -32,7 +48,9 @@ public class AudioController : MonoBehaviour
         
     }
 
-    public void PlayConsumeSound() {
+    public void PlayConsumeSound(float expectedFuel) {
+
+        consumeAudioSource.volume = Mathf.Min(expectedFuel / 5f, 1f);
         // consumeAudioSource.clip = consumeSound;
         consumeAudioSource.pitch = (Random.Range(0.6f, 1.1f));
         consumeAudioSource.PlayOneShot(consumeSound);
