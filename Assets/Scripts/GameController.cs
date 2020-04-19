@@ -15,8 +15,6 @@ public class GameController : MonoBehaviour
     private CanvasElementsNeeded uiData;
     private SceneTransitions sceneTransitions;
 
-    private TileBase burntGrassTile;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -52,15 +50,14 @@ public class GameController : MonoBehaviour
     private void CheckTileUnderPlayer()
     {
         Vector3Int cellPosition = grid.WorldToCell(player.gameObject.transform.position);
-        TileBase tile = tilemap.GetTile(cellPosition);
-
-        if (tile is GrassTile)
+        Tile tile = tilemap.GetTile<Tile>(cellPosition);
+        if (tile && tile.sprite)
         {
-            GrassTile grassTile = (GrassTile)tile;
-            Debug.Log(grassTile.IsBurnt());
-            if (!grassTile.IsBurnt())
+            Debug.Log(tile.sprite.name);
+            if (tile.sprite.name == "Grass")
             {
-                grassTile.Burn();
+                Tile burntGrassTile = (Tile) Resources.Load("Tiles/BurntGrass", typeof(Tile));
+                tilemap.SetTile(cellPosition, burntGrassTile);
             }
         }
     }
