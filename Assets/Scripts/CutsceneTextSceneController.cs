@@ -24,10 +24,6 @@ public class CutsceneTextSceneController : MonoBehaviour
         }
     }
 
-    private void OnDestroy() {
-        canvas.HideCutsceneUI();
-    }
-
     // Update is called once per frame
     void Update()
     {

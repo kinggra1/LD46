@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8e838c8a9bdb14408331c1b154d02d4, type: 3}
-  m_Name: ConsumeLog
+  m_Script: {fileID: 11500000, guid: e4b60c303411db846a2633918e8fc7a6, type: 3}
+  m_Name: ConsumeSmallRock
   m_EditorClassIdentifier: 
-  fuel: 2
+  fuel: 0
   minPlayerSize: 5

@@ -49,6 +49,10 @@ public class GameController : MonoBehaviour
 
     private void CheckTileUnderPlayer()
     {
+        if (!tilemap) {
+            return;
+        }
+
         Vector3Int cellPosition = grid.WorldToCell(player.gameObject.transform.position);
         Tile tile = tilemap.GetTile<Tile>(cellPosition);
         if (tile && tile.sprite)
