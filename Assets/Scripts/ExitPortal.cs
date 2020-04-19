@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class ExitPortal : MonoBehaviour {
 
     [SerializeField]
-    public Object sceneToLoad;
+    public string sceneToLoad;
 
     private void Start() {
-        if (!sceneToLoad) {
+        if (sceneToLoad.Length == 0) {
             throw new MissingReferenceException("Portal to nowhere! Configure portal in: " + SceneManager.GetActiveScene().name);
         }
     }

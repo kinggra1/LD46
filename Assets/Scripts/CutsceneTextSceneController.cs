@@ -7,7 +7,7 @@ public class CutsceneTextSceneController : MonoBehaviour
 {
 
     public string[] textToDisplay;
-    public Object nextScene;
+    public string nextScene;
 
     private CanvasElementsNeeded canvas;
 
@@ -32,7 +32,9 @@ public class CutsceneTextSceneController : MonoBehaviour
             if (textIndex < textToDisplay.Length) {
                 canvas.cutsceneText.text = textToDisplay[textIndex];
             } else {
-                GameController.instance.PortalToScene(nextScene.name);
+                string name = nextScene;
+                GameController gc = GameController.instance;
+                gc.PortalToScene(name);
             }
         }
     }

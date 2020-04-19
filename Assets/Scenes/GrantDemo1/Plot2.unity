@@ -154,7 +154,7 @@ MonoBehaviour:
   - Beat TWO LEVELS??
   - Best player
   - You are #1
-  nextScene: {fileID: 102900000, guid: c27c93141f19854488813710b38b563f, type: 3}
+  nextScene: Level3
 --- !u!4 &282646744
 Transform:
   m_ObjectHideFlags: 0

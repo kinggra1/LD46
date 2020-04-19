@@ -277,7 +277,7 @@ MonoBehaviour:
   textToDisplay:
   - Intro story...
   - Interesting background content to set up player for a fun time
-  nextScene: {fileID: 102900000, guid: 2df8fad4940c7d04fbc533d5d87652ed, type: 3}
+  nextScene: Level1
 --- !u!4 &994393259
 Transform:
   m_ObjectHideFlags: 0

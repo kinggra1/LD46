@@ -16,16 +16,19 @@ public class GameController : MonoBehaviour
     private SceneTransitions sceneTransitions;
 
     private float grassFuelValue = 0.1f;
-    private float waterDamageRate = -2f;
+    private float waterDamageRate = -10f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    private void Awake() {
         if (instance) {
             Destroy(this.gameObject);
             return;
         }
         instance = this;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
 
         FindNeededObjects();
 
@@ -47,6 +50,10 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
+
         CheckTileUnderPlayer();
     }
 
@@ -100,5 +107,9 @@ public class GameController : MonoBehaviour
 
     public void ResumeGame() {
         // Time.timeScale = 1f;
+    }
+
+    public void Die() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

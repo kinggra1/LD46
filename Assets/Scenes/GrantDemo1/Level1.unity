@@ -364,27 +364,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &477249330 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3404274958079585572, guid: 2d8191a6485cdea42a65217f4e5d08a5,
-    type: 3}
-  m_PrefabInstance: {fileID: 3404274958588921894}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &477249335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477249330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af67e756f47baba40b63e8d457b66c92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  portalFadeImage: {fileID: 0}
-  cutsceneUI: {fileID: 0}
-  cutsceneText: {fileID: 0}
 --- !u!1001 &649710327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71057,27 +71036,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -6375173873835997608, guid: ea9fcf9e205178b4b8a5dc48d4c7da51, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea9fcf9e205178b4b8a5dc48d4c7da51, type: 3}
---- !u!1 &1795588331 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6999187351339559527, guid: ea9fcf9e205178b4b8a5dc48d4c7da51,
-    type: 3}
-  m_PrefabInstance: {fileID: 1795588330}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1795588332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795588331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eafda9b03b7198a4c8b359a90f7cd57e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1953489913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71485,9 +71445,8 @@ PrefabInstance:
     - target: {fileID: 8343116684634556931, guid: 6b1b82d471f7b0b45a7f7150eba6a2fe,
         type: 3}
       propertyPath: sceneToLoad
-      value: 
-      objectReference: {fileID: 102900000, guid: ea1e103ea05b5444e93cfbd9a9a229b1,
-        type: 3}
+      value: Plot1
+      objectReference: {fileID: 0}
     - target: {fileID: 8343116684634556932, guid: 6b1b82d471f7b0b45a7f7150eba6a2fe,
         type: 3}
       propertyPath: m_Name

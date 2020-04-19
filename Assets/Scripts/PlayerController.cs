@@ -44,18 +44,22 @@ public class PlayerController : MonoBehaviour
         return Mathf.Sqrt(fuel);
     }
 
+    private void ConstrainFuelCheck() {
+        // Arbitrarily cap at 0.5f for now.
+        if (fuel < 0.5f) {
+            GameController.instance.Die();
+        }
+    }
+
     private void UpdateFuel() {
         fuel -= fuelLossRate * Time.deltaTime;
 
-        // Arbitrarily cap at 0.5f for now. This will be "death" later.
-        if (fuel < 0.5f) {
-            fuel = 0.5f;
-        }
+        ConstrainFuelCheck();
     }
 
     public void AddFuel(float deltaFuel) {
         this.fuel += deltaFuel;
-        // TODO: Check for constraints (e.g. 0 since this could be negative fuel).
+        ConstrainFuelCheck();
     }
 
     public float GetFuel() {
@@ -77,7 +81,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider) {
         ExitPortal portal = collider.GetComponent<ExitPortal>();
         if (portal) {
-            GameController.instance.PortalToScene(portal.sceneToLoad.name);
+            GameController.instance.PortalToScene(portal.sceneToLoad);
         }
     }
 }

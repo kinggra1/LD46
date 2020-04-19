@@ -272,7 +272,7 @@ MonoBehaviour:
   textToDisplay:
   - You beat the first level
   - You must be good at video games
-  nextScene: {fileID: 102900000, guid: 171f7819d51770b44867d6f16e1dd232, type: 3}
+  nextScene: Level2
 --- !u!4 &622578536
 Transform:
   m_ObjectHideFlags: 0
