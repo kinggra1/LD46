@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GrantDemo1/Plot3.unity
     guid: aed44ac6acab15f448959f2e0c2ff51c
+  - enabled: 1
+    path: Assets/Scenes/Danielle/BestLevelEverMade.unity
+    guid: c5eb61f91cf8a5143b14700369493a2b
   m_configObjects: {}

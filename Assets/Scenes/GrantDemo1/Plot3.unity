@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textToDisplay:
   - A winner is you.
-  nextScene: Intro
+  nextScene: BestLevelEverMade
 --- !u!4 &415442747
 Transform:
   m_ObjectHideFlags: 0
