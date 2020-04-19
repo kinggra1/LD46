@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private readonly float MIN_SMALL_SIZE = 5f;
     private readonly float MIN_MEDIUM_SIZE = 15f;
+    private readonly float MIN_OHLAWD_SIZE = 25f;
 
     // This is UR LIFE FORCE.
     private float fuel = 4.5f;
@@ -24,13 +25,15 @@ public class PlayerController : MonoBehaviour
     {
         mini,
         small,
-        medium
+        medium,
+        ohLawd
     }
     private size currentSpriteSize = size.mini;
 
     public RuntimeAnimatorController miniAnimation;
     public RuntimeAnimatorController smallAnimation;
     public RuntimeAnimatorController mediumAnimation;
+    public RuntimeAnimatorController ohLawdAnimation;
 
     // Start is called before the first frame update
     void Start() {
@@ -62,15 +65,20 @@ public class PlayerController : MonoBehaviour
             currentSpriteSize = size.mini;
             SetAnimation(miniAnimation);
         }
-        else if (fuel >= MIN_SMALL_SIZE && fuel <= MIN_MEDIUM_SIZE && currentSpriteSize != size.small)
+        else if (fuel >= MIN_SMALL_SIZE && fuel < MIN_MEDIUM_SIZE && currentSpriteSize != size.small)
         {
             currentSpriteSize = size.small;
             SetAnimation(smallAnimation);
         }
-        else if (fuel > MIN_MEDIUM_SIZE && currentSpriteSize != size.medium)
+        else if (fuel >= MIN_MEDIUM_SIZE && fuel < MIN_OHLAWD_SIZE && currentSpriteSize != size.medium)
         {
             currentSpriteSize = size.medium;
             SetAnimation(mediumAnimation);
+        }
+        else if (fuel >= MIN_OHLAWD_SIZE && currentSpriteSize != size.ohLawd)
+        {
+            currentSpriteSize = size.ohLawd;
+            SetAnimation(ohLawdAnimation);
         }
     }
 
