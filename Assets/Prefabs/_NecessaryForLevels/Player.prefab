@@ -100,6 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniAnimation: {fileID: 9100000, guid: 93b1b95fd2ecb3b4693e038a67c7948b, type: 2}
   smallAnimation: {fileID: 9100000, guid: 0ff4fb7d1432e8849824126121be496d, type: 2}
+  mediumAnimation: {fileID: 9100000, guid: f3477e62ef6e7b149a4a6bc875b67c96, type: 2}
+  ohLawdAnimation: {fileID: 9100000, guid: a0263aa941e46fd4dbfa886493356e5e, type: 2}
 --- !u!50 &2337766266393803023
 Rigidbody2D:
   serializedVersion: 4
