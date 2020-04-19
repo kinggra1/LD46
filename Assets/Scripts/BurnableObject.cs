@@ -19,6 +19,7 @@ public class BurnableObject : MonoBehaviour {
             burned = true;
 
             action.ApplyTo(player);
+            AudioController.instance.PlayConsumeSound(action.GetExpectedFuel());
         }
     }
 }
