@@ -56,11 +56,11 @@ public class GameController : MonoBehaviour
         Tile tile = tilemap.GetTile<Tile>(cellPosition);
         if (tile && tile.sprite)
         {
-            if (tile.sprite.name == "Grass")
+            if (tile.name == "Grass")
             {
                 BurnGrass(cellPosition);
             }
-            if (tile.sprite.name == "Water")
+            if (tile.name == "Water")
             {
                 player.AddFuel(waterDamageRate * Time.deltaTime);
             }
