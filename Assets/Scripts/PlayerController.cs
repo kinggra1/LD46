@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private readonly float MIN_SMALL_SIZE = 5f;
 
     // This is UR LIFE FORCE.
-    private float fuel = 5f;
+    private float fuel = 4.8f;
     // fuel lost per second
     private float fuelLossRate = 0.5f;
 
