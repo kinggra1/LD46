@@ -97,4 +97,8 @@ public class GameController : MonoBehaviour
     public void ResumeGame() {
         // Time.timeScale = 1f;
     }
+
+    public void Die() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
