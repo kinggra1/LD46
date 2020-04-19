@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController instance;
 
-    public enum TileType { NONE, GRASS, BURNT_GRASS, WATER }
+    public enum TileType { NONE, GRASS, BURNT_GRASS, WATER, DEEP_WATER }
 
     private PlayerController player;
     private Grid grid;
@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
 
     private float grassFuelValue = 0.1f;
     private float waterDamageRate = -10f;
+    private float deepWaterDamageRate = -50f;
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +73,9 @@ public class GameController : MonoBehaviour
             case TileType.WATER:
                 player.AddFuel(waterDamageRate * Time.deltaTime);
                 break;
+            case TileType.DEEP_WATER:
+                player.AddFuel(deepWaterDamageRate * Time.deltaTime);
+                break;
         }
     }
 
@@ -107,6 +111,10 @@ public class GameController : MonoBehaviour
             }
             if (tile.sprite.name == "Water") {
                 return TileType.WATER;
+            }
+            if (tile.sprite.name == "DeepWater")
+            {
+                return TileType.DEEP_WATER;
             }
         }
         return TileType.NONE;
