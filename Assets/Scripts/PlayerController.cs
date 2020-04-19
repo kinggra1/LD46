@@ -35,7 +35,13 @@ public class PlayerController : MonoBehaviour
         UpdateFuel();
 
         transform.position += new Vector3(xInput, yInput) * MOVEMENT_SPEED * Time.fixedDeltaTime;
-        transform.localScale = new Vector3(fuel, fuel);
+
+        float playerScale = CalculateScale();
+        transform.localScale = new Vector3(playerScale, playerScale);
+    }
+
+    private float CalculateScale() {
+        return Mathf.Sqrt(fuel);
     }
 
     private void UpdateFuel() {
