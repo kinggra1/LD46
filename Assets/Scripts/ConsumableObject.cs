@@ -10,6 +10,7 @@ public class ConsumableObject : MonoBehaviour {
         if (action.CanBeAppliedTo(player)) {
             action.ApplyTo(player);
             Destroy(this.gameObject);
+            AudioController.instance.PlayConsumeSound();
         }
     }
 }
