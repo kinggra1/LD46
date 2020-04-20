@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private float xInput;
     private float yInput;
 
+    private Tilemap tilemap;
+
     public enum size
     {
         mini,
@@ -37,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        tilemap = GetComponent<Tilemap>();
         fuelLossRate = DEFAULT_FUEL_LOSS_RATE;
     }
 
@@ -74,11 +78,13 @@ public class PlayerController : MonoBehaviour
         {
             currentSpriteSize = size.medium;
             SetAnimation(mediumAnimation);
+            RefreshMap();
         }
         else if (fuel >= MIN_OHLAWD_SIZE && currentSpriteSize != size.ohLawd)
         {
             currentSpriteSize = size.ohLawd;
             SetAnimation(ohLawdAnimation);
+            RefreshMap();
         }
     }
 
@@ -86,6 +92,14 @@ public class PlayerController : MonoBehaviour
     {
         Animator animator = GetComponent<Animator>();
         animator.runtimeAnimatorController = animation;
+    }
+
+    private void RefreshMap()
+    {
+        if (tilemap != null)
+        {
+            tilemap.RefreshAllTiles();
+        }
     }
 
     private float CalculateScale() {
