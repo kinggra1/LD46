@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private float xInput;
     private float yInput;
 
+    private Tilemap tilemap;
+
     public enum size
     {
         mini,
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        tilemap = GetComponent<Tilemap>();
         fuelLossRate = DEFAULT_FUEL_LOSS_RATE;
     }
 
