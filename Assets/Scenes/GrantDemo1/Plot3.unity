@@ -152,7 +152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textToDisplay:
   - A winner is you.
-  nextScene: BestLevelEverMade
+  - Just kidding bonus levels time.
+  nextScene: BestLevelEverMadeGrantEdition
 --- !u!4 &415442747
 Transform:
   m_ObjectHideFlags: 0

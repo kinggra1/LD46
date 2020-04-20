@@ -74,6 +74,7 @@ MonoBehaviour:
   menuMusic: {fileID: 0}
   gameplayMusic: {fileID: 8300000, guid: ae2deb88b77b6cd40822d1669288c3cc, type: 3}
   backgroundFire: {fileID: 8300000, guid: eb24199b8eaf6ac4eb5d92daf45b94ba, type: 3}
+  portalSound: {fileID: 8300000, guid: 3404ef5942610494f8b198b2b458f8b7, type: 3}
 --- !u!114 &6529568373241379598
 MonoBehaviour:
   m_ObjectHideFlags: 0

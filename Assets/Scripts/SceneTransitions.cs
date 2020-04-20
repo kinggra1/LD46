@@ -8,7 +8,8 @@ public class SceneTransitions : MonoBehaviour {
     public enum TransitionType { PORTAL };
     private TransitionType currentTransitionType = TransitionType.PORTAL;
 
-    private readonly float PORTAL_FADEOUT_TIME = 1.5f;
+    private readonly float PORTAL_FADEOUT_TIME = 2f;
+    private readonly float PORTAL_FADEIN_TIME = 1f;
 
     private Image portalFadeImage;
 
@@ -32,14 +33,14 @@ public class SceneTransitions : MonoBehaviour {
         // Hard set overlap to be transparent before tweening.
         Color current = portalFadeImage.color;
         portalFadeImage.color = new Color(current.r, current.g, current.b, 0f);
-        LeanTween.alpha(portalFadeImage.rectTransform, 1f, 1f).setEase(LeanTweenType.linear).setOnComplete(() => GameController.instance.LoadScene(sceneName));
+        LeanTween.alpha(portalFadeImage.rectTransform, 1f, PORTAL_FADEOUT_TIME).setEase(LeanTweenType.linear).setOnComplete(() => GameController.instance.LoadScene(sceneName));
     }
 
     public void PortalUncover() {
         // Hard set overlap to be opaque before tweening.
         Color current = portalFadeImage.color;
         portalFadeImage.color = new Color(current.r, current.g, current.b, 1f);
-        LeanTween.alpha(portalFadeImage.rectTransform, 0f, 1f).setEase(LeanTweenType.linear).setOnComplete(GameController.instance.ResumeGame);
+        LeanTween.alpha(portalFadeImage.rectTransform, 0f, PORTAL_FADEIN_TIME).setEase(LeanTweenType.linear).setOnComplete(GameController.instance.ResumeGame);
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {

@@ -12,6 +12,7 @@ public class AudioController : MonoBehaviour
     public AudioClip gameplayMusic;
 
     public AudioClip backgroundFire;
+    public AudioClip portalSound;
 
     private AudioSource consumeAudioSource;
     private AudioSource musicAudioSource;
@@ -56,5 +57,9 @@ public class AudioController : MonoBehaviour
         // consumeAudioSource.clip = consumeSound;
         consumeAudioSource.pitch = (Random.Range(0.6f, 1.1f));
         consumeAudioSource.PlayOneShot(consumeSound);
+    }
+
+    public void PlayPortalSound() {
+        backgroundAudioSource.PlayOneShot(portalSound);
     }
 }

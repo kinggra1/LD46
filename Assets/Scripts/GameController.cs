@@ -21,6 +21,8 @@ public class GameController : MonoBehaviour
     private float waterDamageRate = -10f;
     private float deepWaterDamageRate = -50f;
 
+    private bool paused = false;
+
     private void Awake() {
         if (instance) {
             Destroy(this.gameObject);
@@ -161,12 +163,15 @@ public class GameController : MonoBehaviour
     }
 
     public void PauseGame() {
-        // This breaks with tweaning. Need to freeze player input and other motion.
-        // Time.timeScale = 0f;
+        paused = true;
     }
 
     public void ResumeGame() {
-        // Time.timeScale = 1f;
+        paused = false;
+    }
+
+    public bool IsPaused() {
+        return paused;
     }
 
     public void Die() {

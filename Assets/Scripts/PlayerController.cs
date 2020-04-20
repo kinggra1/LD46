@@ -55,6 +55,10 @@ public class PlayerController : MonoBehaviour
 
     // Physics timestep. Put motion code here for smoother motions and collisions.
     private void FixedUpdate() {
+        if (GameController.instance.IsPaused()) {
+            return;
+        }
+
         UpdateFuel();
 
         transform.position += new Vector3(xInput, yInput) * MOVEMENT_SPEED * Time.fixedDeltaTime;
@@ -159,6 +163,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider) {
         ExitPortal portal = collider.GetComponent<ExitPortal>();
         if (portal) {
+            AudioController.instance.PlayPortalSound();
             GameController.instance.PortalToScene(portal.sceneToLoad);
         }
 
