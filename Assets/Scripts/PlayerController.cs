@@ -28,9 +28,9 @@ public class PlayerController : MonoBehaviour
 
     private readonly float MAX_FUEL = 50f;
 
-    private readonly float MIN_SMALL_SIZE = 5f;
-    private readonly float MIN_MEDIUM_SIZE = 15f;
-    private readonly float MIN_OHLAWD_SIZE = 30f;
+    private readonly float MIN_SMALL_SIZE = 15f;
+    private readonly float MIN_MEDIUM_SIZE = 25f;
+    private readonly float MIN_OHLAWD_SIZE = 50f;
 
     // This is UR LIFE FORCE.
     private float fuel = 4.5f;
@@ -65,10 +65,10 @@ public class PlayerController : MonoBehaviour
          *     2. Fuel Loss Rate
          *     3. Invincible time after growing (not shrinking) to size.
          */
-        statsMap.Add(size.mini, new PlayerStats(2f, 0.5f, 0f));
-        statsMap.Add(size.small, new PlayerStats(2.5f, 2.5f, 1f));
-        statsMap.Add(size.medium, new PlayerStats(3f, 7.5f, 1f));
-        statsMap.Add(size.ohLawd, new PlayerStats(3.5f, 20f, 3f));
+        statsMap.Add(size.mini, new PlayerStats(2f, 1f, 0f));
+        statsMap.Add(size.small, new PlayerStats(2.5f, 2f, 1f));
+        statsMap.Add(size.medium, new PlayerStats(3.5f, 5f, 1f));
+        statsMap.Add(size.ohLawd, new PlayerStats(4f, 20f, 3f));
     }
 
     // Start is called before the first frame update
@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private float CalculateScale() {
-        return Mathf.Sqrt(fuel);
+        return Mathf.Sqrt(fuel/2);
     }
 
     private void ConstrainFuelCheck() {
