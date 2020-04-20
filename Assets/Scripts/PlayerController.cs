@@ -108,13 +108,11 @@ public class PlayerController : MonoBehaviour
         {
             SetNewSizeObjects(size.medium);
             SetAnimation(mediumAnimation);
-            RefreshMap();
         }
         else if (fuel >= MIN_OHLAWD_SIZE && currentSpriteSize != size.ohLawd)
         {
             SetNewSizeObjects(size.ohLawd);
             SetAnimation(ohLawdAnimation);
-            RefreshMap();
         }
     }
 
@@ -122,14 +120,6 @@ public class PlayerController : MonoBehaviour
     {
         Animator animator = GetComponent<Animator>();
         animator.runtimeAnimatorController = animation;
-    }
-
-    private void RefreshMap()
-    {
-        if (tilemap != null)
-        {
-            tilemap.RefreshAllTiles();
-        }
     }
 
     private float CalculateScale() {
