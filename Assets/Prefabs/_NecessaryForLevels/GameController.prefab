@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6331079233181914129}
   - component: {fileID: -6375173873835997608}
   - component: {fileID: 332099629}
+  - component: {fileID: 6529568373241379598}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -73,3 +74,17 @@ MonoBehaviour:
   menuMusic: {fileID: 0}
   gameplayMusic: {fileID: 8300000, guid: ae2deb88b77b6cd40822d1669288c3cc, type: 3}
   backgroundFire: {fileID: 8300000, guid: eb24199b8eaf6ac4eb5d92daf45b94ba, type: 3}
+--- !u!114 &6529568373241379598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999187351339559527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f448c973812e745b6500ba42c580b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallFire: {fileID: 2660700876890301952, guid: 41f7eec1c65b99a498598d9f1450ef3f,
+    type: 3}

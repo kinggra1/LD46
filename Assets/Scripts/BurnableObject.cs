@@ -19,7 +19,14 @@ public class BurnableObject : MonoBehaviour {
             burned = true;
 
             action.ApplyTo(player);
-            AudioController.instance.PlayConsumeSound(action.GetExpectedFuel());
+            float effectSize = action.GetExpectedFuel();
+
+            if (effectSize >= 0f) {
+                AudioController.instance.PlayConsumeSound(effectSize);
+                BurnEffects.instance.PlaceSmallFire(this.transform.position, effectSize);
+            } else {
+                // Cold sounds?
+            }
         }
     }
 }

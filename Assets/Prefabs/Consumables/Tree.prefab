@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 527564190670353400}
   - component: {fileID: 527564190670353401}
   - component: {fileID: 527564190670353403}
-  - component: {fileID: -4014088739585124025}
+  - component: {fileID: 8585351233171949194}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -97,8 +97,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   action: {fileID: 11400000, guid: 375f2ee28e3a31e4f91c24dc2dd2cf56, type: 2}
   burnedSprite: {fileID: 21300000, guid: e6fed49892afe5944ac67ab08cd7ea7d, type: 3}
---- !u!61 &-4014088739585124025
-BoxCollider2D:
+--- !u!60 &8585351233171949194
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -110,16 +110,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.53}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.894, y: 1.786}
     newSize: {x: 4.47, y: 8.93}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.72, y: 0.72}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.03682542, y: 1.7738116}
+      - {x: -0.5235374, y: 0.007860482}
+      - {x: 0.50659084, y: -0.0119075775}

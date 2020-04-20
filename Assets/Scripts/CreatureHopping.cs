@@ -10,14 +10,23 @@ public class CreatureHopping : MonoBehaviour
     public float hopDelayMax = 2f;
     public float hopDistanceMin = 1f;
     public float hopDistanceMax = 2f;
+    public float hopDuration = 1f;
+    public float playerVisionDistance = 5f;
 
     private Vector3 hopTarget;
     private float hopDelay;
 
+    private Vector3 defaultScale;
+
+    private PlayerController player;
+
     // Start is called before the first frame update
     void Start()
     {
-        CalculateNextHop();
+        player = FindObjectOfType<PlayerController>();
+
+        defaultScale = transform.localScale;
+        DoNextHop();
     }
 
     // Update is called once per frame
@@ -25,22 +34,35 @@ public class CreatureHopping : MonoBehaviour
     {
         hopDelay -= Time.deltaTime;
         if (hopDelay < 0f) {
-            transform.position = hopTarget;
-            CalculateNextHop();
+            DoNextHop();
         }
     }
 
-    private void CalculateNextHop() {
+    private void DoNextHop() {
+        // Default to not hopping anywhere, but try to find a better position.
+        hopTarget = transform.position;
+        float maxDistToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        bool shouldAvoidPlayer = maxDistToPlayer < playerVisionDistance;
         for (int i = 0; i < HOP_SEARCH_ATTEMPTS; i++) {
             Vector3 target = RandomHopTarget();
-            Debug.Log(target);
+            float distToPlayer = Vector3.Distance(target, player.transform.position);
+
             if (!GameController.instance.IsWaterHere(target)) {
-                hopTarget = target;
+                if (!shouldAvoidPlayer) {
+                    hopTarget = target;
+                    break;
+                } else if (distToPlayer > maxDistToPlayer) {
+                    hopTarget = target;
+                    maxDistToPlayer = distToPlayer;
+                }
             }
         }
-        hopTarget = transform.position;
 
         hopDelay = Random.Range(hopDelayMin, hopDelayMax);
+
+        float facing = -Mathf.Sign(hopTarget.x - transform.position.x);
+        transform.localScale = new Vector3(defaultScale.x * facing, defaultScale.y, defaultScale.z);
+        LeanTween.move(gameObject, hopTarget, hopDuration);
     }
 
     private Vector3 RandomHopTarget() { 

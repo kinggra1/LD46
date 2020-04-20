@@ -21,15 +21,17 @@ public class GameController : MonoBehaviour
     private float waterDamageRate = -10f;
     private float deepWaterDamageRate = -50f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    private void Awake() {
         if (instance) {
             Destroy(this.gameObject);
             return;
         }
         instance = this;
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
         FindNeededObjects();
 
         sceneTransitions = GetComponent<SceneTransitions>();
