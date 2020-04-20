@@ -58,6 +58,19 @@ public class PlayerController : MonoBehaviour
     public RuntimeAnimatorController mediumAnimation;
     public RuntimeAnimatorController ohLawdAnimation;
 
+    public Animator faceAnimator;
+
+    public enum expression
+    {
+        idle,
+        scared
+    }
+
+    private expression currentFaceExpression = expression.idle;
+
+    public RuntimeAnimatorController idleExpressionAnimation;
+    public RuntimeAnimatorController scaredExpressionAnimation;
+
     private void Awake() {
         /*
          * Stats are:
@@ -244,5 +257,21 @@ public class PlayerController : MonoBehaviour
     public size GetSize()
     {
         return currentSpriteSize;
+    }
+
+    public void SetFaceAnimation(expression faceExpression)
+    {
+        if (currentFaceExpression != faceExpression)
+        {
+            currentFaceExpression = faceExpression;
+            if (currentFaceExpression == expression.idle)
+            {
+                faceAnimator.runtimeAnimatorController = idleExpressionAnimation;
+            }
+            else if (currentFaceExpression == expression.scared)
+            {
+                faceAnimator.runtimeAnimatorController = scaredExpressionAnimation;
+            }
+        }
     }
 }

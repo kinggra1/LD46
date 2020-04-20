@@ -103,16 +103,21 @@ public class GameController : MonoBehaviour
         switch (GetTileType(tile))
         {
             case TileType.NONE:
+                player.SetFaceAnimation(PlayerController.expression.idle);
                 break;
             case TileType.GRASS:
+                player.SetFaceAnimation(PlayerController.expression.idle);
                 BurnGrass(cellPosition);
                 break;
             case TileType.BURNT_GRASS:
+                player.SetFaceAnimation(PlayerController.expression.idle);
                 break;
             case TileType.WATER:
+                player.SetFaceAnimation(PlayerController.expression.scared);
                 player.AddFuel(waterDamageRate * Time.deltaTime * waterMultiplier);
                 break;
             case TileType.DEEP_WATER:
+                player.SetFaceAnimation(PlayerController.expression.scared);
                 player.AddFuel(deepWaterDamageRate * Time.deltaTime * waterMultiplier);
                 break;
         }
