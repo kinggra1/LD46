@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ConsumeSmallRock
   m_EditorClassIdentifier: 
   fuel: 0
-  minPlayerSize: 15
+  minPlayerSize: 80
