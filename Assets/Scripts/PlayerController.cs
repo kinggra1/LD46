@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject miniCollider;
+    public GameObject smallCollider;
+    public GameObject mediumCollider;
+    public GameObject ohLawdCollider;
+
     private readonly float MOVEMENT_SPEED = 2f;
     private readonly float DEFAULT_FUEL_LOSS_RATE = 0.5f;
     private readonly float MAX_FUEL = 100f;
@@ -58,26 +63,51 @@ public class PlayerController : MonoBehaviour
         transform.localScale = new Vector3(playerScale, playerScale);
     }
 
+    private void SetColliderActive(size size, bool active) {
+        switch (size) {
+            case size.mini:
+                miniCollider.SetActive(active);
+                break;
+            case size.small:
+                smallCollider.SetActive(active);
+                break;
+            case size.medium:
+                mediumCollider.SetActive(active);
+                break;
+            case size.ohLawd:
+                ohLawdCollider.SetActive(active);
+
+                break;
+        }
+    }
+
+    private void SetNewSizeObjects(size newSize) {
+        SetColliderActive(currentSpriteSize, false);
+        currentSpriteSize = newSize;
+        SetColliderActive(currentSpriteSize, true);
+    }
+
     private void CheckSize()
     {
         if (fuel < MIN_SMALL_SIZE && currentSpriteSize != size.mini)
         {
-            currentSpriteSize = size.mini;
+            SetNewSizeObjects(size.mini);
             SetAnimation(miniAnimation);
         }
         else if (fuel >= MIN_SMALL_SIZE && fuel < MIN_MEDIUM_SIZE && currentSpriteSize != size.small)
         {
-            currentSpriteSize = size.small;
+            SetNewSizeObjects(size.small);
             SetAnimation(smallAnimation);
+
         }
         else if (fuel >= MIN_MEDIUM_SIZE && fuel < MIN_OHLAWD_SIZE && currentSpriteSize != size.medium)
         {
-            currentSpriteSize = size.medium;
+            SetNewSizeObjects(size.medium);
             SetAnimation(mediumAnimation);
         }
         else if (fuel >= MIN_OHLAWD_SIZE && currentSpriteSize != size.ohLawd)
         {
-            currentSpriteSize = size.ohLawd;
+            SetNewSizeObjects(size.ohLawd);
             SetAnimation(ohLawdAnimation);
         }
     }

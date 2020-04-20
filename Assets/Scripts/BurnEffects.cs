@@ -23,8 +23,15 @@ public class BurnEffects : MonoBehaviour
     }
 
     private void Start() {
-        effectsParent = new GameObject();
-        effectsParent.name = "BurnEffects";
+        
+    }
+
+    private GameObject GetEffectsParent() {
+        if (!effectsParent) {
+            effectsParent = new GameObject();
+            effectsParent.name = "BurnEffects";
+        }
+        return effectsParent;
     }
 
     public void PlaceSmallFireNear(Vector3 location, float scaler) {
@@ -33,8 +40,9 @@ public class BurnEffects : MonoBehaviour
     }
 
     public void PlaceSmallFire(Vector3 location, float scaler) {
+        effectsParent = GetEffectsParent();
         GameObject effect = Instantiate(smallFire, location, Quaternion.identity);
-        effect.gameObject.transform.SetParent(effectsParent.transform);
+        effect.gameObject.transform.SetParent(GetEffectsParent().transform);
 
         effect.gameObject.transform.localScale = Vector3.zero;
         Vector3 targetScale = new Vector3(scaler, scaler, scaler);
