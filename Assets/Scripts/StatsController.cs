@@ -109,7 +109,7 @@ public class StatsController : MonoBehaviour
     }
 
     private string FormatStatsString(string prefix, int collected, int total) {
-        return prefix + collected + "/" + total;
+        return collected + " of " + total;
     }
 
     public string GetStickStatsString() {

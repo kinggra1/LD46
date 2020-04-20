@@ -21,9 +21,7 @@ public class GameController : MonoBehaviour
     private float waterDamageRate = -10f;
     private float deepWaterDamageRate = -50f;
 
-    private int totalSquirrels;
-    private int remainingSqirrels;
-    private string squirrelString;
+    private string previousSceneName;
 
     private bool paused = false;
 
@@ -129,7 +127,8 @@ public class GameController : MonoBehaviour
     }
 
     public bool IsWaterHere(Vector3 worldPos) {
-        return GetTileTypeAtPos(worldPos) == TileType.WATER;
+        TileType type = GetTileTypeAtPos(worldPos);
+        return type == TileType.WATER || type == TileType.DEEP_WATER;
     }
 
     public TileType GetTileTypeAtPos(Vector3 pos) {
@@ -159,11 +158,12 @@ public class GameController : MonoBehaviour
         return TileType.NONE;
     }
 
-    public string GetSquirrilStats() {
-        return squirrelString;
+    public void LoadPreviousScene() {
+        PortalToScene(previousSceneName);
     }
 
     public void PortalToScene(string sceneName) {
+        previousSceneName = SceneManager.GetActiveScene().name;
         StatsController.instance.EndLevelStats();
         sceneTransitions.PortalToScene(sceneName);
     }

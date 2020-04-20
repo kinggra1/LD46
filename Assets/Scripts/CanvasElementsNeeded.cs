@@ -28,4 +28,15 @@ public class CanvasElementsNeeded : MonoBehaviour
     public void ShowSquirrelStatsUI() {
         squirrelStatsUI.SetActive(true);
     }
+
+
+
+    // Hacky pass through functions for stats buttons.
+    public void Continue() {
+        GameObject.FindObjectOfType<CutsceneSquirrelStatsController>().NextScene();
+    }
+
+    public void Retry() {
+        GameController.instance.LoadPreviousScene();
+    }
 }

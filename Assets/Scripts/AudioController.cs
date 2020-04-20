@@ -30,8 +30,8 @@ public class AudioController : MonoBehaviour
         backgroundAudioSource = gameObject.AddComponent<AudioSource>();
 
         musicAudioSource.clip = gameplayMusic;
-        backgroundAudioSource.loop = true;
         musicAudioSource.volume = 0.1f;
+        musicAudioSource.loop = true;
         musicAudioSource.Play();
 
         backgroundAudioSource.clip = backgroundFire;

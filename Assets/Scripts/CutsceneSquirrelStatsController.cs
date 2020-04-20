@@ -44,7 +44,11 @@ public class CutsceneSquirrelStatsController : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Jump")) {
-            GameController.instance.PortalToScene(nextScene);
+            NextScene();
         }
+    }
+
+    public void NextScene() {
+        GameController.instance.PortalToScene(nextScene);
     }
 }
