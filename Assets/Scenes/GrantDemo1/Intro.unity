@@ -275,8 +275,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textToDisplay:
-  - Intro story...
-  - Interesting background content to set up player for a fun time
+  - 'Once upon a time... '
+  - 'There was a yurt made of animal furs, nestled between rocks, on a black sand
+    beach, encompassing a small island. Inside slept a young girl, well actually
+    she couldn''t sleep. She pretended for a while, before staring across the smoking
+    remains of a fire, it''s embers still glowing red. '
+  - 'Across the yurt slept Old Man Wizard. His robes a tattered mess, mumbling in
+    his sleep about pigs in blankets. He held tight to a large battered book with
+    a simple title, "Spelling". Only he had crossed out the "ing" and replaced it
+    with an "S". She said it under her breath, "Spells." '
+  - 'She snuck over to Old Man Wizard, tip toeing as quietly as she could. Although
+    there was no need, as his mumbles had turned into a bear''s snore. Reaching for
+    the book, she slid it free and looked down. Old Man Wizards eyes were open and
+    staring right at her. '
+  - 'Ahhh! She screamed, taking 2 steps backward, across the still burning embers
+    of their dying fire. In pain and fear she lost her footing and stumbled, dropping
+    the book. '
+  - 'The book landed open across the embers and burst into flame. A small flame,
+    although very unusual as it had eyes and a little smirk. '
+  - 'Old Man Wizard jumped awake but his creaky old joints couldn''t move him fast
+    enough. "Water!" he yelled at the girl. '
+  - 'The flame knew the word "water" all too well and wasted no time. Making a break
+    for the door, it did stop for a moment to wink at the girl, then fled the yurt. '
+  - Jumping onto any flammable object it could find, It grew and grew...
+  - 'Thus you began your journey. A spark that became a flame, on a quest to find
+    it''s home and a little freedom. '
   nextScene: Level1
 --- !u!4 &994393259
 Transform:
