@@ -28,12 +28,17 @@ public class CutsceneTextSceneController : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Jump")) {
-            textIndex += 1;
-            if (textIndex < textToDisplay.Length) {
-                canvas.cutsceneText.text = textToDisplay[textIndex];
-            } else {
-                GameController.instance.PortalToScene(nextScene);
-            }
+            Next();
+        }
+    }
+
+    public void Next() {
+        textIndex += 1;
+        if (textIndex < textToDisplay.Length) {
+            canvas.cutsceneText.text = textToDisplay[textIndex];
+        }
+        else {
+            GameController.instance.PortalToScene(nextScene);
         }
     }
 }

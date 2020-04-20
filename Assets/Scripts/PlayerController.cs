@@ -74,6 +74,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         tilemap = GetComponent<Tilemap>();
+
+        float playerScale = CalculateScale();
+        transform.localScale = new Vector3(playerScale, playerScale);
     }
 
     // Update is called once per frame

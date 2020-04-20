@@ -13,4 +13,8 @@ public class ExitPortal : MonoBehaviour {
             throw new MissingReferenceException("Portal to nowhere! Configure portal in: " + SceneManager.GetActiveScene().name);
         }
     }
+
+    private void Update() {
+        transform.Rotate(0f, 0f, 90f * Time.deltaTime);
+    }
 }

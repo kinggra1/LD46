@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Squirrel
+  - Stick
+  - Bush
+  - Log
+  - Tree
   layers:
   - Default
   - TransparentFX

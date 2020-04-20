@@ -29,4 +29,8 @@ public class BurnableObject : MonoBehaviour {
             }
         }
     }
+
+    public bool IsBurned() {
+        return burned;
+    }
 }

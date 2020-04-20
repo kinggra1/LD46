@@ -48,18 +48,21 @@ public class GameController : MonoBehaviour
     }
 
     void FindNeededObjects() {
+        StatsController.instance.StartLevelStats();
+
         player = GameObject.FindObjectOfType<PlayerController>();
         grid = GameObject.FindObjectOfType<Grid>();
         tilemap = GameObject.FindObjectOfType<Tilemap>();
 
         uiData = GameObject.FindObjectOfType<CanvasElementsNeeded>();
-
-        totalSquirrels = GameObject.FindGameObjectsWithTag("Squirrel").Length;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
         CheckTilesUnderPlayer();
     }
 
@@ -161,8 +164,7 @@ public class GameController : MonoBehaviour
     }
 
     public void PortalToScene(string sceneName) {
-        remainingSqirrels = GameObject.FindGameObjectsWithTag("Squirrel").Length;
-        squirrelString = "Squirrels 'Collected': " + (totalSquirrels - remainingSqirrels) + "/" + totalSquirrels;
+        StatsController.instance.EndLevelStats();
         sceneTransitions.PortalToScene(sceneName);
     }
 

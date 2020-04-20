@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1216239016627211520, guid: 2d8191a6485cdea42a65217f4e5d08a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 994393258}
     - target: {fileID: 3404274958079585568, guid: 2d8191a6485cdea42a65217f4e5d08a5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -238,11 +243,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 6885112489370488890, guid: 2d8191a6485cdea42a65217f4e5d08a5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d8191a6485cdea42a65217f4e5d08a5, type: 3}
 --- !u!1 &994393257
@@ -274,8 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4267bb6b155a1e46ac25b77f1006beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textToDisplay:
-  - Demo Load In Fast
+  textToDisplay: []
   nextScene: Level1
 --- !u!4 &994393259
 Transform:
@@ -462,7 +461,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

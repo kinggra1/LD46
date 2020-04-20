@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e838c8a9bdb14408331c1b154d02d4, type: 3}
   m_Name: ConsumeLog
   m_EditorClassIdentifier: 
-  fuel: 3
+  fuel: 1
   minPlayerSize: 15

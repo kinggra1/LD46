@@ -14,7 +14,30 @@ public class CutsceneSquirrelStatsController : MonoBehaviour
     {
         canvas = FindObjectOfType<CanvasElementsNeeded>();
         canvas.ShowSquirrelStatsUI();
-        canvas.collectedSquirrels.text = GameController.instance.GetSquirrilStats();
+
+        canvas.collectedSticks.gameObject.SetActive(false);
+        canvas.collectedBushes.gameObject.SetActive(false);
+        canvas.collectedLogs.gameObject.SetActive(false);
+        canvas.collectedTrees.gameObject.SetActive(false);
+        canvas.collectedSquirrels.gameObject.SetActive(false);
+
+
+        canvas.collectedSticks.text = StatsController.instance.GetStickStatsString();
+        canvas.collectedBushes.text = StatsController.instance.GetBushStatsString();
+        canvas.collectedLogs.text = StatsController.instance.GetLogStatsString();
+        canvas.collectedTrees.text = StatsController.instance.GetTreeStatsString();
+        canvas.collectedSquirrels.text = StatsController.instance.GetSquirrelStatsString();
+
+        LeanTween.delayedCall(1.0f, () => ActivateStat(canvas.collectedSticks.gameObject));
+        LeanTween.delayedCall(1.3f, () => ActivateStat(canvas.collectedBushes.gameObject));
+        LeanTween.delayedCall(1.6f, () => ActivateStat(canvas.collectedLogs.gameObject));
+        LeanTween.delayedCall(1.9f, () => ActivateStat(canvas.collectedTrees.gameObject));
+        LeanTween.delayedCall(2.2f, () => ActivateStat(canvas.collectedSquirrels.gameObject));
+    }
+
+    private void ActivateStat(GameObject statObject) {
+        statObject.SetActive(true);
+        AudioController.instance.PlayConsumeSound(1f);
     }
 
     // Update is called once per frame

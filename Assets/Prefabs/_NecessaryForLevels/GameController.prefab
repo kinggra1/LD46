@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -6375173873835997608}
   - component: {fileID: 332099629}
   - component: {fileID: 6529568373241379598}
+  - component: {fileID: 2718944835857851346}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -89,3 +90,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smallFire: {fileID: 2660700876890301952, guid: 41f7eec1c65b99a498598d9f1450ef3f,
     type: 3}
+--- !u!114 &2718944835857851346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999187351339559527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 070f66de198aea84388e8149fb3c935b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

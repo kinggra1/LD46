@@ -11,6 +11,10 @@ public class CanvasElementsNeeded : MonoBehaviour
     public Text cutsceneText;
 
     public GameObject squirrelStatsUI;
+    public Text collectedSticks;
+    public Text collectedBushes;
+    public Text collectedLogs;
+    public Text collectedTrees;
     public Text collectedSquirrels;
 
     public void ShowCutsceneUI() {
