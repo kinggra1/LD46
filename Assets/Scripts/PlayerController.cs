@@ -232,6 +232,10 @@ public class PlayerController : MonoBehaviour
         {
             burnable.TryBeBurnedBy(this);
         }
+        ConsumableObject consumable = collider.GetComponent<ConsumableObject>();
+        if (consumable) {
+            consumable.TryBeConsumedBy(this);
+        }
     }
 
     public size GetSize()

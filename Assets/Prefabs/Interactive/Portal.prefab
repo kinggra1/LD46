@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5540d6e447d4efb4185cbe00eb1cf6ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: {fileID: 102900000, guid: 2df8fad4940c7d04fbc533d5d87652ed, type: 3}
+  sceneToLoad: 
 --- !u!58 &8555034678643761571
 CircleCollider2D:
   m_ObjectHideFlags: 0

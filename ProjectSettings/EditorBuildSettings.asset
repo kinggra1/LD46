@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/GrantDemo1/MainMenu.unity
+    guid: f847e924f7f5e3d40b228c886256a290
+  - enabled: 1
     path: Assets/Scenes/GrantDemo1/Intro.unity
     guid: f3dee1fbb2f462a4a862e0c942f575c7
   - enabled: 1
@@ -29,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GrantDemo1/Plot3.unity
     guid: aed44ac6acab15f448959f2e0c2ff51c
+  - enabled: 1
+    path: Assets/Scenes/GrantDemo1/Plot4.unity
+    guid: 274df6d865195c94e99345741a287843
   - enabled: 1
     path: Assets/Scenes/Danielle/BestLevelEverMade.unity
     guid: c5eb61f91cf8a5143b14700369493a2b

@@ -17,9 +17,13 @@ public class GameController : MonoBehaviour
     private CanvasElementsNeeded uiData;
     private SceneTransitions sceneTransitions;
 
-    private float grassFuelValue = 0.1f;
+    private float grassFuelValue = 0.2f;
     private float waterDamageRate = -10f;
     private float deepWaterDamageRate = -50f;
+
+    private int totalSquirrels;
+    private int remainingSqirrels;
+    private string squirrelString;
 
     private bool paused = false;
 
@@ -49,6 +53,8 @@ public class GameController : MonoBehaviour
         tilemap = GameObject.FindObjectOfType<Tilemap>();
 
         uiData = GameObject.FindObjectOfType<CanvasElementsNeeded>();
+
+        totalSquirrels = GameObject.FindGameObjectsWithTag("Squirrel").Length;
     }
 
     // Update is called once per frame
@@ -150,7 +156,13 @@ public class GameController : MonoBehaviour
         return TileType.NONE;
     }
 
+    public string GetSquirrilStats() {
+        return squirrelString;
+    }
+
     public void PortalToScene(string sceneName) {
+        remainingSqirrels = GameObject.FindGameObjectsWithTag("Squirrel").Length;
+        squirrelString = "Squirrels 'Collected': " + (totalSquirrels - remainingSqirrels) + "/" + totalSquirrels;
         sceneTransitions.PortalToScene(sceneName);
     }
 

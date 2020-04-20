@@ -6,8 +6,12 @@ using UnityEngine.UI;
 public class CanvasElementsNeeded : MonoBehaviour
 {
     public Image portalFadeImage;
+
     public GameObject cutsceneUI;
     public Text cutsceneText;
+
+    public GameObject squirrelStatsUI;
+    public Text collectedSquirrels;
 
     public void ShowCutsceneUI() {
         cutsceneUI.SetActive(true);
@@ -15,5 +19,9 @@ public class CanvasElementsNeeded : MonoBehaviour
 
     public void HideCutsceneUI() {
         cutsceneUI.SetActive(false);
+    }
+
+    public void ShowSquirrelStatsUI() {
+        squirrelStatsUI.SetActive(true);
     }
 }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ConsumeSmallCreature
   m_EditorClassIdentifier: 
   fuel: 2
-  minPlayerSize: 2
+  minPlayerSize: 1

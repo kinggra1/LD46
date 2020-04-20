@@ -13,7 +13,7 @@ public class MainMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1")) {
+        if (Input.GetButtonDown("Jump")) {
             PlayGame();
         }
 
@@ -21,6 +21,7 @@ public class MainMenuController : MonoBehaviour
 
     public void PlayGame() {
         GameController.instance.PortalToScene("Intro");
+        Destroy(this.gameObject);
     }
 
     public void Exit() {
