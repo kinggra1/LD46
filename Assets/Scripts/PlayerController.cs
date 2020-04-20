@@ -5,12 +5,17 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public struct PlayerStats {
+    // Travel speed of player at this size.
     public float speed;
+    // Fuel loss at this size.
     public float fuelLoss;
+    // How long you will be immune from fuel loss when growing (not shrinking) to this size).
+    public float immunityTime;
 
-    public PlayerStats(float speed, float fuelLoss) {
+    public PlayerStats(float speed, float fuelLoss, float immunityTime) {
         this.speed = speed;
         this.fuelLoss = fuelLoss;
+        this.immunityTime = immunityTime;
     }
 }
 
@@ -21,18 +26,16 @@ public class PlayerController : MonoBehaviour
     public GameObject mediumCollider;
     public GameObject ohLawdCollider;
 
-    private readonly float MOVEMENT_SPEED = 2f;
-    private readonly float DEFAULT_FUEL_LOSS_RATE = 0.5f;
-    private readonly float MAX_FUEL = 100f;
+    private readonly float MAX_FUEL = 50f;
 
     private readonly float MIN_SMALL_SIZE = 5f;
     private readonly float MIN_MEDIUM_SIZE = 15f;
-    private readonly float MIN_OHLAWD_SIZE = 25f;
+    private readonly float MIN_OHLAWD_SIZE = 30f;
 
     // This is UR LIFE FORCE.
     private float fuel = 4.5f;
-    // fuel lost per second
-    private float fuelLossRate = 0.5f;
+
+    private float immunityTimer = 0f;
 
     private float xInput;
     private float yInput;
@@ -56,16 +59,21 @@ public class PlayerController : MonoBehaviour
     public RuntimeAnimatorController ohLawdAnimation;
 
     private void Awake() {
-        statsMap.Add(size.mini, new PlayerStats(2f, 0.5f));
-        statsMap.Add(size.small, new PlayerStats(3f, 1.5f));
-        statsMap.Add(size.medium, new PlayerStats(4f, 2.5f));
-        statsMap.Add(size.ohLawd, new PlayerStats(5f, 3.5f));
+        /*
+         * Stats are:
+         *     1. Speed
+         *     2. Fuel Loss Rate
+         *     3. Invincible time after growing (not shrinking) to size.
+         */
+        statsMap.Add(size.mini, new PlayerStats(2f, 0.5f, 0f));
+        statsMap.Add(size.small, new PlayerStats(2.5f, 2.5f, 1f));
+        statsMap.Add(size.medium, new PlayerStats(3f, 7.5f, 1f));
+        statsMap.Add(size.ohLawd, new PlayerStats(3.5f, 20f, 3f));
     }
 
     // Start is called before the first frame update
     void Start() {
         tilemap = GetComponent<Tilemap>();
-        fuelLossRate = DEFAULT_FUEL_LOSS_RATE;
     }
 
     // Update is called once per frame
@@ -98,6 +106,14 @@ public class PlayerController : MonoBehaviour
         return statsMap[currentSpriteSize].fuelLoss;
     }
 
+    private bool Immune() {
+        return immunityTimer > 0f;
+    }
+
+    private void SetImmunityTimer(float immunity) {
+        immunityTimer = immunity;
+    }
+
     private void SetColliderActive(size size, bool active) {
         switch (size) {
             case size.mini:
@@ -111,12 +127,16 @@ public class PlayerController : MonoBehaviour
                 break;
             case size.ohLawd:
                 ohLawdCollider.SetActive(active);
-
                 break;
         }
     }
 
     private void SetNewSizeObjects(size newSize) {
+        // Add immunity timer if this change was a growth.
+        if (currentSpriteSize < newSize) {
+            SetImmunityTimer(statsMap[newSize].immunityTime);
+        }
+
         SetColliderActive(currentSpriteSize, false);
         currentSpriteSize = newSize;
         SetColliderActive(currentSpriteSize, true);
@@ -165,12 +185,21 @@ public class PlayerController : MonoBehaviour
     }
 
     private void UpdateFuel() {
-        fuel -= CurrentFuelLossRate() * Time.deltaTime;
+        immunityTimer -= Time.deltaTime;
+        if (Immune()) {
+            return;
+        }
 
+        fuel -= CurrentFuelLossRate() * Time.deltaTime;
         ConstrainFuelCheck();
     }
 
     public void AddFuel(float deltaFuel) {
+
+        if (deltaFuel < 0f && Immune()) {
+            return;
+        }
+
         this.fuel += deltaFuel;
         ConstrainFuelCheck();
     }
