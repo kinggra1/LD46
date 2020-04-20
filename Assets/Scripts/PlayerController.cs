@@ -4,6 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
+public struct PlayerStats {
+    public float speed;
+    public float fuelLoss;
+
+    public PlayerStats(float speed, float fuelLoss) {
+        this.speed = speed;
+        this.fuelLoss = fuelLoss;
+    }
+}
+
 public class PlayerController : MonoBehaviour
 {
     public GameObject miniCollider;
@@ -36,12 +46,21 @@ public class PlayerController : MonoBehaviour
         medium,
         ohLawd
     }
+    Dictionary<size, PlayerStats> statsMap = new Dictionary<size, PlayerStats>();
+
     private size currentSpriteSize = size.mini;
 
     public RuntimeAnimatorController miniAnimation;
     public RuntimeAnimatorController smallAnimation;
     public RuntimeAnimatorController mediumAnimation;
     public RuntimeAnimatorController ohLawdAnimation;
+
+    private void Awake() {
+        statsMap.Add(size.mini, new PlayerStats(2f, 0.5f));
+        statsMap.Add(size.small, new PlayerStats(3f, 1.5f));
+        statsMap.Add(size.medium, new PlayerStats(4f, 2.5f));
+        statsMap.Add(size.ohLawd, new PlayerStats(5f, 3.5f));
+    }
 
     // Start is called before the first frame update
     void Start() {
@@ -65,10 +84,18 @@ public class PlayerController : MonoBehaviour
 
         UpdateFuel();
 
-        transform.position += new Vector3(xInput, yInput) * MOVEMENT_SPEED * Time.fixedDeltaTime;
+        transform.position += new Vector3(xInput, yInput) * CurrentSpeed() * Time.fixedDeltaTime;
 
         float playerScale = CalculateScale();
         transform.localScale = new Vector3(playerScale, playerScale);
+    }
+
+    private float CurrentSpeed() {
+        return statsMap[currentSpriteSize].speed;
+    }
+
+    private float CurrentFuelLossRate() {
+        return statsMap[currentSpriteSize].fuelLoss;
     }
 
     private void SetColliderActive(size size, bool active) {
@@ -138,7 +165,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void UpdateFuel() {
-        fuel -= fuelLossRate * Time.deltaTime;
+        fuel -= CurrentFuelLossRate() * Time.deltaTime;
 
         ConstrainFuelCheck();
     }
