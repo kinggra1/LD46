@@ -50,19 +50,45 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckTileUnderPlayer();
+        CheckTilesUnderPlayer();
     }
 
-    private void CheckTileUnderPlayer()
+    private void CheckTilesUnderPlayer()
     {
-        if (!tilemap) {
+        if (!tilemap)
+        {
             return;
         }
+        PlayerController.size playerSize = player.GetSize();
 
-        Vector3Int cellPosition = grid.WorldToCell(player.gameObject.transform.position);
+        Vector3Int centerCellPosition = grid.WorldToCell(player.gameObject.transform.position);
+
+        CheckTile(centerCellPosition);
+
+        if (playerSize == PlayerController.size.ohLawd || playerSize == PlayerController.size.medium)
+        {
+            float waterMultiplier = .1f;
+            CheckTile(centerCellPosition + new Vector3Int(1, 0, 0), waterMultiplier);
+            CheckTile(centerCellPosition + new Vector3Int(-1, 0, 0), waterMultiplier);
+            CheckTile(centerCellPosition + new Vector3Int(0, 1, 0), waterMultiplier);
+            CheckTile(centerCellPosition + new Vector3Int(0, -1, 0), waterMultiplier);
+        }
+
+        if (playerSize == PlayerController.size.ohLawd)
+        {
+            CheckTile(centerCellPosition + new Vector3Int(1, 1, 0), 0);
+            CheckTile(centerCellPosition + new Vector3Int(-1, 1, 0), 0);
+            CheckTile(centerCellPosition + new Vector3Int(1, -1, 0), 0);
+            CheckTile(centerCellPosition + new Vector3Int(-1, -1, 0), 0);
+        }
+    }
+
+    private void CheckTile(Vector3Int cellPosition, float waterMultiplier = 1f)
+    {
         Tile tile = tilemap.GetTile<Tile>(cellPosition);
 
-        switch (GetTileType(tile)) {
+        switch (GetTileType(tile))
+        {
             case TileType.NONE:
                 break;
             case TileType.GRASS:
@@ -71,10 +97,10 @@ public class GameController : MonoBehaviour
             case TileType.BURNT_GRASS:
                 break;
             case TileType.WATER:
-                player.AddFuel(waterDamageRate * Time.deltaTime);
+                player.AddFuel(waterDamageRate * Time.deltaTime * waterMultiplier);
                 break;
             case TileType.DEEP_WATER:
-                player.AddFuel(deepWaterDamageRate * Time.deltaTime);
+                player.AddFuel(deepWaterDamageRate * Time.deltaTime * waterMultiplier);
                 break;
         }
     }
