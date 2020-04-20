@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private float xInput;
     private float yInput;
 
-    private enum size
+    public enum size
     {
         mini,
         small,
@@ -167,5 +167,10 @@ public class PlayerController : MonoBehaviour
         {
             burnable.TryBeBurnedBy(this);
         }
+    }
+
+    public size GetSize()
+    {
+        return currentSpriteSize;
     }
 }
